@@ -1,11 +1,16 @@
 {
   "name": "holdem-ai",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Web No-Limit Texas Hold'em vs AI opponents",
   "type": "module",
   "scripts": {
-    "test": "echo \"no tests yet\""
+    "test": "node test/run.js",
+    "sim": "node test/sim.js",
+    "start": "node scripts/serve.js"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
 }

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Hold'em vs AI</title>
+  <meta name="description" content="No-Limit Texas Hold'em against 1–5 AI opponents. Virtual chips only." />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♠</text></svg>" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <h1>Hold'em <span>vs AI</span></h1>
+      <div class="topbar-right">
+        <span class="seed" title="Share this seed to replay the same deals">seed <code id="seed-label">–</code></span>
+        <button id="btn-new" class="ghost" type="button">New game</button>
+      </div>
+    </header>
+
+    <main id="table" class="table" hidden>
+      <section id="opponents" class="opponents" aria-label="Opponents"></section>
+
+      <section class="center" aria-label="Board">
+        <div class="board" id="board"></div>
+        <div class="pot-row">
+          <span class="street" id="street">–</span>
+          <span class="pot">Pot <strong id="pot">0</strong></span>
+        </div>
+        <div class="message" id="message" role="status" aria-live="polite"></div>
+        <button id="btn-next" class="primary" type="button" hidden>Next hand</button>
+      </section>
+
+      <section class="me" aria-label="You">
+        <div id="my-seat" class="seat mine"></div>
+        <div class="hole" id="my-cards"></div>
+      </section>
+
+      <section class="actions" id="actions" aria-label="Actions">
+        <div class="buttons">
+          <button id="btn-fold" type="button" class="act fold">Fold</button>
+          <button id="btn-check" type="button" class="act check">Check</button>
+          <button id="btn-bet" type="button" class="act bet">Bet</button>
+          <button id="btn-allin" type="button" class="act allin">All-in</button>
+        </div>
+        <div class="sizing" id="sizing">
+          <input id="bet-range" type="range" min="0" max="0" step="1" value="0" aria-label="Bet amount" />
+          <input id="bet-input" type="number" inputmode="numeric" min="0" max="0" step="1" value="0" aria-label="Bet amount" />
+          <div class="presets" id="presets"></div>
+        </div>
+      </section>
+
+      <details class="log" id="log-panel">
+        <summary>Event log <button id="btn-export" type="button" class="ghost small">Export JSON</button></summary>
+        <ol id="log"></ol>
+      </details>
+    </main>
+
+    <dialog id="setup">
+      <form method="dialog" id="setup-form">
+        <h2>New game</h2>
+        <label>AI opponents
+          <select id="ai-count">
+            <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option>
+          </select>
+        </label>
+        <label>Seed <small>(optional, same seed = same deals)</small>
+          <input id="seed-input" type="text" inputmode="numeric" placeholder="random" />
+        </label>
+        <p class="note">Starting chips 1,000 · blinds 5/10 · virtual chips only.</p>
+        <div class="row">
+          <button id="setup-cancel" type="button" class="ghost">Cancel</button>
+          <button id="setup-start" type="submit" class="primary">Start</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="gameover">
+      <h2 id="gameover-title">Game over</h2>
+      <p id="gameover-text"></p>
+      <div class="row">
+        <button id="gameover-restart" type="button" class="primary">Play again</button>
+      </div>
+    </dialog>
+  </div>
+  <script type="module" src="./src/ui/main.js"></script>
+</body>
+</html>

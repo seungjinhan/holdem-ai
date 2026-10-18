@@ -1,0 +1,11 @@
+{
+  "name": "holdem-ai",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Web No-Limit Texas Hold'em vs AI opponents",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"no tests yet\""
+  },
+  "license": "MIT"
+}
